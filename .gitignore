@@ -1,0 +1,15 @@
+*.class
+
+# Package Files #
+*.war
+*.ear
+
+# Settings #
+/resources/settings.txt
+/log.txt
+
+# Idea
+.idea/
+
+# Target
+target/
