@@ -1,0 +1,9 @@
+[ {"id":1,"name":"12.5","model":"Aficio MP 5001","location":"Dragvoll","interfaceLanguage":"en","url":"http://folk.ntnu.no/grasdalk/printers/10.207.7.18/","status":"Alert","paperCounter":10000},
+  {"id":2,"name":"i3.3","model":"Aficio MP 5001","location":"Dragvoll","interfaceLanguage":"en","url":"http://folk.ntnu.no/grasdalk/printers/10.207.7.19/","status":"Alert","paperCounter":10000},
+  {"id":3,"name":"6.4","model":"Aficio MP 5001","location":"Dragvoll","interfaceLanguage":"no","url":"http://folk.ntnu.no/grasdalk/printers/10.207.7.20/","status":"Alert","paperCounter":10000},
+  {"id":4,"name":"7.3","model":"Aficio MP 7001","location":"Dragvoll","interfaceLanguage":"no","url":"http://folk.ntnu.no/grasdalk/printers/10.207.7.21/","status":"Alert","paperCounter":10000},
+  {"id":5,"name":"10.3v","model":"Aficio MP 7001","location":"Dragvoll","interfaceLanguage":"no","url":"http://folk.ntnu.no/grasdalk/printers/10.207.7.22/","status":"Alert","paperCounter":10000},
+  {"id":6,"name":"10.3h","model":"Aficio MP 7001","location":"Dragvoll","interfaceLanguage":"en","url":"http://folk.ntnu.no/grasdalk/printers/10.207.7.23/","status":"Alert","paperCounter":10000},
+  {"id":7,"name":"6.3","model":"Aficio MP 5001","location":"Dragvoll","interfaceLanguage":"no","url":"http://folk.ntnu.no/grasdalk/printers/10.207.7.25/","status":"Alert","paperCounter":10000},
+  {"id":8,"name":"4.4","model":"Aficio SP 8200DN","location":"Dragvoll","interfaceLanguage":"no","url":"http://folk.ntnu.no/grasdalk/printers/10.207.7.32/","status":"Alert","paperCounter":10000}
+]
