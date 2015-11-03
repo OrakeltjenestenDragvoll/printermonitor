@@ -16,7 +16,6 @@ public class PrinterRepository {
 
     private List<Printer> printers = new ArrayList<>();
 
-
     public void save(Printer printer) {
         printers.add(printer);
     }
@@ -25,9 +24,9 @@ public class PrinterRepository {
         printers.remove(printer);
     }
 
-    public void update(Printer printer){
-
-
+    public void update(Printer printer) {
+        delete(findById(printer.getId()));
+        save(printer);
     }
 
     public List<Printer> getAll() {

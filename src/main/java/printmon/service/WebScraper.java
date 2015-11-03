@@ -65,8 +65,12 @@ public class WebScraper {
         }
         else if("no".equals(printer.getInterfaceLanguage())){
             String text = document.text();
+            String status;
             String preProcessed = text.substring(text.indexOf("Vertsnavn"));
-            String status = preProcessed.substring(preProcessed.indexOf("Skriver")+8,preProcessed.indexOf("Kopimaskin")-1);
+            if(preProcessed.indexOf("Kopimaskin") > 0)
+                status = preProcessed.substring(preProcessed.indexOf("Skriver")+8, preProcessed.indexOf("Kopimaskin")-1);
+            else
+                status = preProcessed.substring(preProcessed.indexOf("Skriver")+8, preProcessed.indexOf("Skriver:")-1);
             return status;
         }
         else

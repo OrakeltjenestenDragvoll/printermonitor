@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import printmon.model.Printer;
 import printmon.repository.PrinterRepository;
 import printmon.service.PrinterListReader;
+import printmon.service.PrinterService;
 import printmon.service.WebScraper;
 
 @RestController
@@ -25,6 +26,8 @@ public class ApiController {
     PrinterRepository printerRepository;
     @Autowired
     PrinterListReader printerListReader;
+    @Autowired
+    PrinterService printerService;
 
     @RequestMapping("/index")
     public List<Printer> registeredPrinters() {
@@ -55,5 +58,15 @@ public class ApiController {
     @RequestMapping("/set_printer")
     public void setPrinter() {
         printerListReader.writePrinter();
+    }
+
+    @RequestMapping("/update_printer")
+    public boolean updatePrinter(@RequestParam(value="id") int id) {
+        return printerService.updateFromWebInterface(id);
+    }
+
+    @RequestMapping("/update_all_printers")
+    public boolean updateAllPrinters() {
+        return printerService.updateAllFromWebInterface();
     }
 }

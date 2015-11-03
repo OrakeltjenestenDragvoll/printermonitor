@@ -2,7 +2,7 @@ package printmon.model;
 
 public class Printer {
 
-    private long id;
+    private int id;
     private String name;
     private String model;
     private String location;
@@ -11,17 +11,17 @@ public class Printer {
     private String status;
     private int paperCounter;
 
-    public Printer(long id, String name) {
+    public Printer(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
