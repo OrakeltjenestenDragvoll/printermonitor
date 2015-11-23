@@ -14,14 +14,14 @@ public class PrinterRepository {
     @Autowired
     PrinterListReader printerListReader;
 
-    private List<Printer> printers = new ArrayList<>();
+    private List<Printer> printerList = new ArrayList<>();
 
     public void save(Printer printer) {
-        printers.add(printer);
+        printerList.add(printer);
     }
 
     public void delete(Printer printer) {
-        printers.remove(printer);
+        printerList.remove(printer);
     }
 
     public void update(Printer printer) {
@@ -30,17 +30,25 @@ public class PrinterRepository {
     }
 
     public List<Printer> getAll() {
-        return printers;
+        return printerList;
     }
 
     public Printer findById(int id) {
-        for(Printer printer : printers)
+        for(Printer printer : printerList)
             if(printer.getId() == id)
                 return printer;
         return null;
     }
 
-    public void loadFromConfiguration() {
-        this.printers = printerListReader.readPrinterList();
+    public boolean loadFromConfiguration() {
+        this.printerList = printerListReader.readPrinterList();
+        if(printerList != null)
+            return true;
+        else
+            return false;
+    }
+
+    public void replacePrinterList(List<Printer> printerList) {
+        this.printerList = printerList;
     }
 }

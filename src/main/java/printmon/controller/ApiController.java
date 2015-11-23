@@ -1,7 +1,6 @@
 package printmon.controller;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,11 +16,8 @@ import printmon.service.WebScraper;
 @RestController
 public class ApiController {
 
-    private final AtomicLong counter = new AtomicLong();
-
     @Autowired
     WebScraper webScraper;
-
     @Autowired
     PrinterListReader printerListReader;
     @Autowired
@@ -68,7 +64,7 @@ public class ApiController {
 
     @RequestMapping(value = "/update_all_printers", method = RequestMethod.GET, produces = "application/json")
     public StringResponse updateAllPrinters() {
-        if( printerService.updateAllFromWebInterface())
+        if(printerService.updateAllFromWebInterface())
             return new StringResponse("Action successful");
         else
             return new StringResponse("Action failed");

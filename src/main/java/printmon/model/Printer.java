@@ -11,11 +11,14 @@ public class Printer {
     private String status;
     private int paperCounter;
 
+    public Printer() {
+
+    }
+
     public Printer(int id, String name) {
         this.id = id;
         this.name = name;
     }
-
 
     public int getId() {
         return id;
@@ -90,5 +93,10 @@ public class Printer {
             return true;
         else
             return false;
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }

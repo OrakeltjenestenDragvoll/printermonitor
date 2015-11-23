@@ -27,8 +27,8 @@ public class PrinterService {
         printerRepository.update(printer);
     }
 
-    public void loadFromConfiguration() {
-        printerRepository.loadFromConfiguration();
+    public boolean loadFromConfiguration() {
+        return printerRepository.loadFromConfiguration();
     }
 
     public Printer findById(int id) {
@@ -37,6 +37,10 @@ public class PrinterService {
 
     public List<Printer> getAll() {
         return printerRepository.getAll();
+    }
+
+    public void replacePrinterList(List<Printer> printerList) {
+        printerRepository.replacePrinterList(printerList);
     }
 
     public boolean updateFromWebInterface(int id) {
@@ -54,11 +58,15 @@ public class PrinterService {
 
     public boolean updateAllFromWebInterface() {
         List<Printer> printerList = printerRepository.getAll();
-        for(int i=0; i < printerList.size();i++) {
-            printerList.get(i).setPaperCounter(webScraper.extractCounterStatus(printerList.get(i).getId()));
-            printerList.get(i).setStatus(webScraper.extractPrinterStatus(printerList.get(i).getId()));
-            update(printerList.get(i));
+        for(Printer printer : printerList) {
+            try {
+                printer.setPaperCounter(webScraper.extractCounterStatus(printer.getId()));
+                printer.setStatus(webScraper.extractPrinterStatus(printer.getId()));
+            }catch (NullPointerException e) {
+                //return false;
+            }
         }
+        replacePrinterList(printerList);
         return true;
     }
 }

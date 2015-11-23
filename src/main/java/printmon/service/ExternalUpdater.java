@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 /**
  * Extend this class to periodically update external systems directly
  * without having to access the API. Implementations of this class are
- * application specific.
+ * application specific and generally discouraged.
  */
 @Component
 public abstract class ExternalUpdater {

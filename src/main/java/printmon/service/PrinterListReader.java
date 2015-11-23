@@ -15,9 +15,11 @@ import java.util.List;
 
 @Service
 public class PrinterListReader {
-
     @Autowired
     PrinterRepository printerRepository;
+
+    private String filePath = new File("").getAbsolutePath();
+    private String printerFile = filePath.concat("\\resources\\printer.json");
 
     public List<Printer> readPrinterList() {
         Gson gson = new Gson();
@@ -25,51 +27,46 @@ public class PrinterListReader {
         Printer[] printerArray;
 
         try {
-            JsonReader jsonReader = new JsonReader(new FileReader("C:\\Users\\Lars Erik\\workspace\\printmon\\src\\main\\resources\\printer.json"));
+            JsonReader jsonReader = new JsonReader(new FileReader(printerFile));
             printerArray = gson.fromJson(jsonReader, Printer[].class);
             printers = new ArrayList(Arrays.asList(printerArray));
         }
         catch (FileNotFoundException e) {
-            e.printStackTrace();
+            createDummyDirectory();
             return null;
         }
         return printers;
     }
 
-    public void writePrinterList() {
-        Gson gson = new Gson();
+    // Not implemented
+    public boolean writePrinterList() {
+        return false;
     }
 
-    public Printer getPrinter() {
+    private void writePrinter() {
         Gson gson = new Gson();
-        Printer printer = null;
-
-        try {
-            JsonReader jsonReader = new JsonReader(new FileReader("C:\\Users\\Lars Erik\\workspace\\printmon\\src\\main\\resources\\printer.json"));
-            printer = gson.fromJson(jsonReader, Printer.class);
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return printer;
-    }
-
-    public void writePrinter() {
-        Gson gson = new Gson();
-        Printer printer = new Printer(1, "testprinter");
+        Printer printer = new Printer(1, "examplePrinter");
         printer.setInterfaceLanguage("en");
-        printer.setModel("richo");
+        printer.setModel("Aficio MP 5001");
+        printer.setLocation("Somewhere");
+        printer.setInterfaceLanguage("no");
+        printer.setUrl("http://folk.ntnu.no/grasdalk/printers/10.207.7.18/");
         printer.setStatus("Alert");
-        printer.setPaperCounter(10000);
+        printer.setPaperCounter(1000);
         printerRepository.save(printer);
 
         try {
-            JsonWriter writer = new JsonWriter(new FileWriter("C:\\Users\\Lars Erik\\workspace\\printmon\\src\\main\\resources\\printer.json"));
+            JsonWriter writer = new JsonWriter(new FileWriter(printerFile));
             gson.toJson(printerRepository.getAll(), ArrayList.class, writer);
             writer.close();
         }
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void createDummyDirectory() {
+        new File(filePath.concat("\\resources")).mkdir();
+        writePrinter();
     }
 }
