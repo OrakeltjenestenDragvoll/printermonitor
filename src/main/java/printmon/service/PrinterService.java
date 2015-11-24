@@ -39,7 +39,7 @@ public class PrinterService {
         return printerRepository.getAll();
     }
 
-    public void replacePrinterList(List<Printer> printerList) {
+    private void replacePrinterList(List<Printer> printerList) {
         printerRepository.replacePrinterList(printerList);
     }
 

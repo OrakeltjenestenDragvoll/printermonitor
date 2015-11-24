@@ -14,7 +14,7 @@ public class WebScraper {
     PrinterRepository printerRepository;
 
     private int connectionTimeout = 5000;
-    private boolean debug = true;
+    private boolean debug = false;
 
 
     public String extractPrinterStatus(int printerId) {
@@ -55,7 +55,7 @@ public class WebScraper {
         if(debug)
             document = getDocument(printer.getUrl() + "Filer_for_main/topPage.htm");
         else
-            document = getDocument(printer.getUrl());
+            document = getDocument(printer.getUrl() + "/web/guest/en/websys/webArch/topPage.cgi");
 
         if("en".equals(printer.getInterfaceLanguage())) {
             String text = document.text();
@@ -87,7 +87,7 @@ public class WebScraper {
         if(debug)
             document = getDocument(printer.getUrl() + "Filer_for_counter/topPage.htm") ;
         else
-            document = getDocument(printer.getUrl());
+            document = getDocument(printer.getUrl() + "/web/guest/en/websys/status/getUnificationCounter.cgi");
 
         if("en".equals(printer.getInterfaceLanguage())) {
             String text = document.text();

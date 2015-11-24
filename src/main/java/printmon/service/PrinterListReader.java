@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import printmon.model.Printer;
 import printmon.repository.PrinterRepository;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -38,9 +39,8 @@ public class PrinterListReader {
         return printers;
     }
 
-    // Not implemented
     public boolean writePrinterList() {
-        return false;
+        throw new NotImplementedException();
     }
 
     private void writePrinter() {

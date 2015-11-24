@@ -20,7 +20,7 @@ public class AdminApiController {
         if (printerService.loadFromConfiguration())
             return new StringResponse("Printers were loaded from configuration");
         else
-            return new StringResponse("Could not load printers. Dummy ");
+            return new StringResponse("Could not load printers. Example files were created");
     }
 
     @RequestMapping("/save_printers")
