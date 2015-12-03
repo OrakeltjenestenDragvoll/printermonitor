@@ -14,7 +14,7 @@ public class WebScraper {
     PrinterRepository printerRepository;
 
     private int connectionTimeout = 5000;
-    private boolean debug = false;
+    public static boolean debug;
 
 
     public String extractPrinterStatus(int printerId) {
@@ -59,8 +59,12 @@ public class WebScraper {
 
         if("en".equals(printer.getInterfaceLanguage())) {
             String text = document.text();
+            String status;
             String preProcessed = text.substring(text.indexOf("Host Name"));
-            String status = preProcessed.substring(preProcessed.indexOf("Printer")+8,preProcessed.indexOf("Copier")-1);
+            if("Aficio SP 8200DN".equals(printer.getModel()))
+                status = preProcessed.substring(preProcessed.indexOf("Printer")+8,preProcessed.indexOf("Toner")-1);
+            else
+                status = preProcessed.substring(preProcessed.indexOf("Printer")+8,preProcessed.indexOf("Copier")-1);
             return status;
         }
         else if("no".equals(printer.getInterfaceLanguage())){
@@ -91,7 +95,12 @@ public class WebScraper {
 
         if("en".equals(printer.getInterfaceLanguage())) {
             String text = document.text();
-            String status = text.substring(text.indexOf("Total :")+8,text.indexOf("Copier")-1);
+            String status;
+            if("Aficio SP 8200DN".equals(printer.getModel()))
+                status = text.substring(text.indexOf("Total :")+8,text.indexOf("Printer")-1);
+            else
+                status = text.substring(text.indexOf("Total :")+8,text.indexOf("Copier")-1);
+
             try {
                 int count  = Integer.parseInt(status);
                 return count;
