@@ -28,7 +28,6 @@
             <artifactId>commons-codec</artifactId>
             <version>1.10</version>
         </dependency>
-
         <!-- Testing -->
         <dependency>
             <groupId>junit</groupId>
@@ -48,8 +47,6 @@
             <artifactId>gson</artifactId>
             <version>2.4</version>
         </dependency>
-
-
     </dependencies>
 
     <properties>
