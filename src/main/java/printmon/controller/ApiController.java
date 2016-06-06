@@ -1,17 +1,15 @@
 package printmon.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import printmon.model.Printer;
 import printmon.model.StringResponse;
 import printmon.service.PrinterListReader;
 import printmon.service.PrinterService;
 import printmon.service.WebScraper;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+import java.util.List;
 
 @RestController
 public class ApiController {
@@ -39,6 +37,7 @@ public class ApiController {
         return webScraper.getDocument(url).text();
     }
 
+    @CrossOrigin()
     @RequestMapping(value = "/last_update", method = RequestMethod.GET)
     public long lastUpdate() {
         return printerService.lastUpdate;
