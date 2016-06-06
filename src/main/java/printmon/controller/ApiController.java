@@ -39,6 +39,11 @@ public class ApiController {
         return webScraper.getDocument(url).text();
     }
 
+    @RequestMapping(value = "/last_update", method = RequestMethod.GET)
+    public long lastUpdate() {
+        return printerService.lastUpdate;
+    }
+
     @RequestMapping(value = "/get_paper_status", method = RequestMethod.GET, produces = "application/json")
     public StringResponse paperCount(@RequestParam(value="id") int id) {
         return new StringResponse(String.valueOf(webScraper.extractCounterStatus(id)));

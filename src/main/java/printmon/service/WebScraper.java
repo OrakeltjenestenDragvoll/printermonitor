@@ -4,8 +4,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.apache.log4j.Logger;
 import printmon.model.Printer;
 import printmon.repository.PrinterRepository;
+
+import java.net.SocketTimeoutException;
 
 @Service
 public class WebScraper {
@@ -13,7 +16,8 @@ public class WebScraper {
     @Autowired
     PrinterRepository printerRepository;
 
-    private int connectionTimeout = 5000;
+    static Logger log = Logger.getLogger(WebScraper.class.getName());
+    private int connectionTimeout = 15000;
     public static boolean debug;
 
 
@@ -132,8 +136,11 @@ public class WebScraper {
         try {
             Document doc = Jsoup.connect(url).timeout(connectionTimeout).get();
             return doc;
+        } catch (SocketTimeoutException e) {
+            log.info("Connection to " + url + " timed out");
+            return null;
         } catch (Exception e) {
-            e.printStackTrace();
+            log.info("Connection to " + url + " failed");
             return null;
         }
     }

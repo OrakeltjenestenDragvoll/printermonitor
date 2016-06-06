@@ -9,6 +9,7 @@ import printmon.model.Printer;
 import printmon.repository.PrinterRepository;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import javax.annotation.PostConstruct;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
