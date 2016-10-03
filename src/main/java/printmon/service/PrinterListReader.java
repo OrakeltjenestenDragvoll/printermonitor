@@ -47,10 +47,8 @@ public class PrinterListReader {
     private void writePrinter() {
         Gson gson = new Gson();
         Printer printer = new Printer(1, "examplePrinter");
-        printer.setInterfaceLanguage("en");
         printer.setModel("Aficio MP 5001");
         printer.setLocation("Somewhere");
-        printer.setInterfaceLanguage("no");
         printer.setUrl("http://folk.ntnu.no/grasdalk/printers/10.207.7.18/");
         printer.setStatus("Alert");
         printer.setPaperCounter(1000);

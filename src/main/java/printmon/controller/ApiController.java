@@ -58,14 +58,6 @@ public class ApiController {
         return printerService.findById(id);
     }
 
-    @RequestMapping(value = "/update_printer", method = RequestMethod.GET, produces = "application/json")
-    public StringResponse updatePrinter(@RequestParam(value="id") int id) {
-        if(printerService.updateFromWebInterface(id))
-            return new StringResponse("Action successful");
-        else
-            return new StringResponse("Action failed");
-    }
-
     @RequestMapping(value = "/update_all_printers", method = RequestMethod.GET, produces = "application/json")
     public StringResponse updateAllPrinters() {
         if(printerService.updateAllFromWebInterface())
