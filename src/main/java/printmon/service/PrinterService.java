@@ -1,6 +1,7 @@
 package printmon.service;
 
 import org.apache.log4j.Logger;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import printmon.ApplicationInitializer;
@@ -49,32 +50,22 @@ public class PrinterService {
         printerRepository.replacePrinterList(printerList);
     }
 
-    public boolean updateFromWebInterface(int id) {
-        Printer printer;
-        try {
-            printer = printerRepository.findById(id);
-            printer.setPaperCounter(webScraper.extractCounterStatus(id));
-            printer.setStatus(webScraper.extractPrinterStatus(id));
-        }catch (NullPointerException e) {
-            return false;
-        }
-        update(printer);
-        return true;
-    }
-
     public boolean updateAllFromWebInterface() {
         //log.info("Updating printers...");
         List<Printer> printerList = printerRepository.getAll();
         for(Printer printer : printerList) {
             try {
-                printer.setPaperCounter(webScraper.extractCounterStatus(printer.getId()));
+                int paperCounter = webScraper.extractCounterStatus(printer.getId());
+                if(paperCounter != -1) {
+                    printer.setPaperCounter(paperCounter);
+                    printer.setLastUpdatePaperCounter(DateTime.now().toString());
+                }
                 printer.setStatus(webScraper.extractPrinterStatus(printer.getId()));
                 //log.info(printer.getName() + " updated with status " + printer.getStatus() + " and paper " + String.valueOf(printer.getPaperCounter()));
             }catch (NullPointerException e) {
                 //return false;
             }
         }
-        replacePrinterList(printerList);
         lastUpdate = System.currentTimeMillis();
         return true;
     }
