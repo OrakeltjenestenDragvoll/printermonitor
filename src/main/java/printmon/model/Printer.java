@@ -6,10 +6,11 @@ public class Printer {
     private String name;
     private String model;
     private String location;
-    private String interfaceLanguage;
     private String url;
     private String status;
+    private String lastUpdateStatus;
     private int paperCounter;
+    private String lastUpdatePaperCounter;
 
     public Printer() {
 
@@ -52,14 +53,6 @@ public class Printer {
         this.location = location;
     }
 
-    public String getInterfaceLanguage() {
-        return interfaceLanguage;
-    }
-
-    public void setInterfaceLanguage(String interfaceLanguage) {
-        this.interfaceLanguage = interfaceLanguage;
-    }
-
     public String getUrl() {
         return url;
     }
@@ -70,6 +63,22 @@ public class Printer {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getLastUpdateStatus() {
+        return lastUpdateStatus;
+    }
+
+    public void setLastUpdateStatus(String lastUpdateStatus) {
+        this.lastUpdateStatus = lastUpdateStatus;
+    }
+
+    public String getLastUpdatePaperCounter() {
+        return lastUpdatePaperCounter;
+    }
+
+    public void setLastUpdatePaperCounter(String lastUpdatePaperCounter) {
+        this.lastUpdatePaperCounter = lastUpdatePaperCounter;
     }
 
     public void setStatus(String status) {
