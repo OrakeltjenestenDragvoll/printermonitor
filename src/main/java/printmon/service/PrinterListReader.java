@@ -44,26 +44,6 @@ public class PrinterListReader {
         throw new NotImplementedException();
     }
 
-    private void writePrinter() {
-        Gson gson = new Gson();
-        Printer printer = new Printer(1, "examplePrinter");
-        printer.setModel("Aficio MP 5001");
-        printer.setLocation("Somewhere");
-        printer.setUrl("http://folk.ntnu.no/grasdalk/printers/10.207.7.18/");
-        printer.setStatus("Alert");
-        printer.setPaperCounter(1000);
-        printerRepository.save(printer);
-
-        try {
-            JsonWriter writer = new JsonWriter(new FileWriter(printerFile));
-            gson.toJson(printerRepository.getAll(), ArrayList.class, writer);
-            writer.close();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     private void createDummyDirectory() {
         new File(filePath.concat("\\resources")).mkdir();
     }
