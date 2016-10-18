@@ -1,5 +1,7 @@
 package printmon.controller;
 
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import printmon.model.Printer;
@@ -39,8 +41,9 @@ public class ApiController {
 
     @CrossOrigin()
     @RequestMapping(value = "/last_update", method = RequestMethod.GET)
-    public long lastUpdate() {
-        return printerService.lastUpdate;
+    public String lastUpdate() {
+        DateTimeFormatter fmt = DateTimeFormat.forPattern("HH:mm, dd/MM/yyyy");
+        return fmt.print(printerService.lastUpdate);
     }
 
     @RequestMapping(value = "/get_paper_status", method = RequestMethod.GET, produces = "application/json")

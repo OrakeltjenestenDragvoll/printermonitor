@@ -19,7 +19,7 @@ public class PrinterService {
     @Autowired
     private WebScraper webScraper;
     static Logger log = Logger.getLogger(ApplicationInitializer.class.getName());
-    public long lastUpdate = System.currentTimeMillis();
+    public DateTime lastUpdate = DateTime.now();
 
     public void save(Printer printer) {
         printerRepository.save(printer);
@@ -66,7 +66,7 @@ public class PrinterService {
                 //return false;
             }
         }
-        lastUpdate = System.currentTimeMillis();
+        lastUpdate = DateTime.now();
         return true;
     }
 
