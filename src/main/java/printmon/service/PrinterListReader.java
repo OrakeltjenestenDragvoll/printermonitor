@@ -66,6 +66,5 @@ public class PrinterListReader {
 
     private void createDummyDirectory() {
         new File(filePath.concat("\\resources")).mkdir();
-        writePrinter();
     }
 }

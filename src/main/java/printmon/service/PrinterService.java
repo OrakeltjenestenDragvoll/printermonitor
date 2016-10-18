@@ -50,7 +50,8 @@ public class PrinterService {
         printerRepository.replacePrinterList(printerList);
     }
 
-    public boolean updateAllFromWebInterface() {
+    @Scheduled(fixedRate = 1*60*1000, initialDelay = 5000)
+    private void performUpdate() {
         //log.info("Updating printers...");
         List<Printer> printerList = printerRepository.getAll();
         for(Printer printer : printerList) {
@@ -67,11 +68,5 @@ public class PrinterService {
             }
         }
         lastUpdate = DateTime.now();
-        return true;
-    }
-
-    @Scheduled(fixedRate = 1*60*1000, initialDelay = 5000)
-    public void performUpdate() {
-        updateAllFromWebInterface();
     }
 }

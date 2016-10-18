@@ -24,12 +24,7 @@ public class ApiController {
     PrinterService printerService;
 
 
-    @RequestMapping("/")
-    public String root() {
-        return "Printmon version 0.7. See https://github.com/OrakeltjenestenDragvoll/printmon for documentation";
-    }
-
-    @RequestMapping(value = "/index", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
     public List<Printer> registeredPrinters() {
         return printerService.getAll();
     }
@@ -59,13 +54,5 @@ public class ApiController {
     @RequestMapping(value = "/get_printer", method = RequestMethod.GET, produces = "application/json")
     public Printer getPrinter(@RequestParam(value="id") int id) {
         return printerService.findById(id);
-    }
-
-    @RequestMapping(value = "/update_all_printers", method = RequestMethod.GET, produces = "application/json")
-    public StringResponse updateAllPrinters() {
-        if(printerService.updateAllFromWebInterface())
-            return new StringResponse("Action successful");
-        else
-            return new StringResponse("Action failed");
     }
 }
