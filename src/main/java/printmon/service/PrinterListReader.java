@@ -20,8 +20,7 @@ public class PrinterListReader {
     @Autowired
     PrinterRepository printerRepository;
 
-    private String filePath = new File("").getAbsolutePath();
-    private String printerFile = filePath.concat("\\resources\\printer.json");
+    private String filePath = new File("/webapps/printmon/resources/printer.json").getPath();
 
     public List<Printer> readPrinterList() {
         Gson gson = new Gson();
@@ -29,12 +28,11 @@ public class PrinterListReader {
         Printer[] printerArray;
 
         try {
-            JsonReader jsonReader = new JsonReader(new FileReader(printerFile));
+            JsonReader jsonReader = new JsonReader(new FileReader(filePath));
             printerArray = gson.fromJson(jsonReader, Printer[].class);
             printers = new ArrayList(Arrays.asList(printerArray));
         }
         catch (FileNotFoundException e) {
-            createDummyDirectory();
             return null;
         }
         return printers;
@@ -42,9 +40,5 @@ public class PrinterListReader {
 
     public boolean writePrinterList() {
         throw new NotImplementedException();
-    }
-
-    private void createDummyDirectory() {
-        new File(filePath.concat("\\resources")).mkdir();
     }
 }

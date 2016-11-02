@@ -54,8 +54,8 @@ public class PrinterService {
     private void performUpdate() {
         //log.info("Updating printers...");
         List<Printer> printerList = printerRepository.getAll();
-        for(Printer printer : printerList) {
-            try {
+        try {
+            for(Printer printer : printerList) {
                 int paperCounter = webScraper.extractCounterStatus(printer.getId());
                 if(paperCounter != -1) {
                     printer.setPaperCounter(paperCounter);
@@ -63,10 +63,10 @@ public class PrinterService {
                 }
                 printer.setStatus(webScraper.extractPrinterStatus(printer.getId()));
                 //log.info(printer.getName() + " updated with status " + printer.getStatus() + " and paper " + String.valueOf(printer.getPaperCounter()));
-            }catch (NullPointerException e) {
-                //return false;
             }
-        }
         lastUpdate = DateTime.now();
+        }catch (NullPointerException e) {
+                //return false;
+        }
     }
 }
